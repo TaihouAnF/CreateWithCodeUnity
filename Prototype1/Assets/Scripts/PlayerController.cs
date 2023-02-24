@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public string inputId;
     public Camera mainCamera;       // Main Cam behind and above 
     public Camera hoodCamera;       // Hood cam inside the vehicle 
     public KeyCode switchKey;       // Key to switch cams
@@ -23,8 +24,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // Obtain player control on direction
-        horizontalInput = Input.GetAxis("Horizontal");
-        forwardInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal" + inputId);
+        forwardInput = Input.GetAxis("Vertical" + inputId);
 
         // Move the vehicle forward
         transform.Translate(forwardInput * speed * Time.deltaTime * Vector3.forward);

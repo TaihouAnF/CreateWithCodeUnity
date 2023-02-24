@@ -353,6 +353,7 @@
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/PlayerControllerX.cs"
 "Assets/Scripts/PropellerSpinX.cs"
+"Assets/Scripts/SceneManagement.cs"
 -langversion:9.0
 
 /deterministic
