@@ -1,3 +1,5 @@
-Prototype1/Library/
-Prototype1/Library/Bee
-Prototype1/Temp/
+Library/
+Logs/
+Temp/
+.vs/
+Prototype1/Assembly-CSharp.csproj
