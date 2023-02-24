@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public Camera mainCamera;       // Main Cam behind and above 
+    public Camera hoodCamera;       // Hood cam inside the vehicle 
+    public KeyCode switchKey;       // Key to switch cams
+
     private float speed = 20.0f;
     private float turnSpeed = 60.0f;
     private float forwardInput;
@@ -27,5 +31,10 @@ public class PlayerController : MonoBehaviour
 
         // Change the vehicle's orientation
         transform.Rotate(Vector3.up, horizontalInput * turnSpeed * Time.deltaTime);
+
+        if (Input.GetKeyDown(switchKey)) {
+            mainCamera.enabled = !mainCamera.enabled;
+            hoodCamera.enabled = !hoodCamera.enabled;
+        }
     }
 }
