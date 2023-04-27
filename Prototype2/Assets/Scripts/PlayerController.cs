@@ -6,10 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     public float horizontalInput;
     public float verticalInput;
-    public float speed = 10f;
+    public float speed = 20f;
     public float xRange = 20f;
     public float zRange = 10f;
     public float bottomZRange = -2f;
+    public Transform foodSpawnPosition;
     public GameObject projectilePrefab;
     // Start is called before the first frame update
     void Start()
@@ -45,7 +46,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             // Launch a projectile from the player
-            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+            Instantiate(projectilePrefab, foodSpawnPosition.position, projectilePrefab.transform.rotation);
         }
 
     }

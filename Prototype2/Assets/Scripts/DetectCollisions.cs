@@ -18,7 +18,15 @@ public class DetectCollisions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Game Over!");
+            
+        }
+        // Doesn't have to destroy other since when they collide,
+        // those destroyable object will also destroy themselves.
+        // And both cases are the same, destroy itself.
         Destroy(gameObject);
-        Destroy(other.gameObject);
+
     }
 }
