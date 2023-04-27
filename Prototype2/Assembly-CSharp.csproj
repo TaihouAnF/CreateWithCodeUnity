@@ -57,10 +57,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\MoveForward.cs" />
-    <Compile Include="Assets\Scripts\DestroyOutOfBound.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\SpawnManager.cs" />
+    <Compile Include="Assets\Scripts\DestroyOutOfBound.cs" />
     <Compile Include="Assets\Scripts\DetectCollisions.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\ScriptsC2\PlayerControllerX.cs" />
+    <Compile Include="Assets\Scripts\ScriptsC2\DestroyOutOfBoundsX.cs" />
+    <Compile Include="Assets\Scripts\ScriptsC2\DetectCollisionsX.cs" />
+    <Compile Include="Assets\Scripts\ScriptsC2\MoveForwardX.cs" />
+    <Compile Include="Assets\Scripts\ScriptsC2\SpawnManagerX.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Course Library\_Source_Files\_LICENSE.txt" />
