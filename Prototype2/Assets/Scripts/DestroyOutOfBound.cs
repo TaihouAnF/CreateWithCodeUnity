@@ -7,10 +7,11 @@ public class DestroyOutOfBound : MonoBehaviour
     private float topBound = 30.0f;
     private float lowerBound = -10.0f;
     private float sideBound = 25f;
+    private ScoreManager scoreManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        scoreManager = GameObject.Find("ScoreManager").GetComponent<ScoreManager>();
     }
 
     // Update is called once per frame
@@ -21,6 +22,10 @@ public class DestroyOutOfBound : MonoBehaviour
         if (transform.position.z > topBound || transform.position.z < lowerBound || 
             transform.position.x < -sideBound || transform.position.x > sideBound)
         {
+            if (CompareTag("Projectile"))
+            {
+                scoreManager.MissFood();
+            }
             Destroy(gameObject);
         }
     }
