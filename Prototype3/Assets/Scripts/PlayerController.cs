@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
             isGameOver = true;
+            Debug.Log("Game Over");
         }
         
     }
