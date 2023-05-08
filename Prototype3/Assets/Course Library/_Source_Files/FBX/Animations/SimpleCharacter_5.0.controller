@@ -8397,10 +8397,10 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 110244708}
-    m_Position: {x: 24, y: 72, z: 0}
+    m_Position: {x: 20, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110261697}
-    m_Position: {x: -72, y: 180, z: 0}
+    m_Position: {x: -70, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 110204794}
     m_Position: {x: 168, y: 180, z: 0}
