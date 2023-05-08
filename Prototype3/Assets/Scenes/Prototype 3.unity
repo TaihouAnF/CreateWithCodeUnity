@@ -484,6 +484,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: b186f9485a0828b468f98fe846ae1a68, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b186f9485a0828b468f98fe846ae1a68, type: 3}
 --- !u!1 &1135753633 stripped
@@ -512,7 +516,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135753633}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 60
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -532,8 +536,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a223876b1e69651468dafd41ead57dff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 8
-  gravityModifier: 1
+  jumpForce: 600
+  gravityModifier: 1.5
   isOnGround: 1
   isGameOver: 0
 --- !u!1 &1963661957
