@@ -61,6 +61,12 @@ public class PlayerControllerX : MonoBehaviour
 
         }
 
+        else if (other.gameObject.CompareTag("Ground"))
+        {
+            gameOver = true;
+            Debug.Log("Game Over!");
+        }
+
     }
 
 }
