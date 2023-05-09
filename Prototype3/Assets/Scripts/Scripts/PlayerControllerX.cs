@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerControllerX : MonoBehaviour
 {
     public bool gameOver;
-    public float topCeiling = 10f;  // The ballon can still go beyong the ceiling as momentum so I set it lower
+    public float topCeiling = 13f;  // The ballon can still go beyong the ceiling as momentum so I set it lower
     public float floatForce;
+    public float bounceForce;
     private float gravityModifier = 3f;
     private Rigidbody playerRb;
 
@@ -16,6 +17,7 @@ public class PlayerControllerX : MonoBehaviour
     private AudioSource playerAudio;
     public AudioClip moneySound;
     public AudioClip explodeSound;
+    public AudioClip bounceSound;
 
 
     // Start is called before the first frame update
@@ -38,7 +40,7 @@ public class PlayerControllerX : MonoBehaviour
         // While space is pressed and player is low enough, float up
         if (Input.GetKey(KeyCode.Space) && !gameOver && transform.position.y <= topCeiling)
         {
-            playerRb.AddForce(Vector3.up * floatForce);
+            playerRb.AddForce(Vector3.up * floatForce, ForceMode.Impulse);
         }
     }
 
@@ -65,8 +67,8 @@ public class PlayerControllerX : MonoBehaviour
 
         else if (other.gameObject.CompareTag("Ground"))
         {
-            gameOver = true;
-            Debug.Log("Game Over!");
+            playerAudio.PlayOneShot(bounceSound, 1.0f);
+            playerRb.AddForce(Vector3.up * bounceForce, ForceMode.Impulse);
         }
 
     }
