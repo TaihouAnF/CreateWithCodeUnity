@@ -16,11 +16,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerControllerScripts.isGameOver) { Debug.Log("Game Over!"); }
-        else { Debug.Log("Score:" + score); }
+        
     }
 
-    public void addScore()
+    public void AddScore()
     {
         if (playerControllerScripts.dashing)
         {
@@ -30,5 +29,11 @@ public class GameManager : MonoBehaviour
         {
             score++;
         }
+        Debug.Log("Current score:" + score);
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Game Over! And your score is:" + score);
     }
 }

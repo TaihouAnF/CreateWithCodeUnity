@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRb;
     private Animator playerAnim;
     private AudioSource playerAudio;
+    private GameManager gameManager;
     public float jumpForce = 500;
     public float doubleJumpForce = 400;
     public float gravityModifier = 1;
@@ -26,6 +27,7 @@ public class PlayerController : MonoBehaviour
         playerAnim = GetComponent<Animator>();
         playerAudio = GetComponent<AudioSource>();
         Physics.gravity *= gravityModifier;
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -82,6 +84,7 @@ public class PlayerController : MonoBehaviour
             explosionParticle.Play();
             playerAudio.PlayOneShot(crashSound, 1.0f);
             dirtParticle.Stop();
+            gameManager.GameOver();
         }
         
     }

@@ -37,7 +37,7 @@ public class MoveLeft : MonoBehaviour
 
         if (gameObject.CompareTag("Obstacle") && transform.position.x < player.transform.position.x - 1.0f && !passed)
         {
-            gameManager.addScore();
+            gameManager.AddScore();
             passed = true;
         }
 
