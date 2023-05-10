@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public bool isOnGround = true;
     public bool doubleJump = true;
     public bool isGameOver = false;
+    public bool dashing = false;
     public ParticleSystem explosionParticle;
     public ParticleSystem dirtParticle;
     public AudioClip jumpSound;
@@ -45,6 +46,18 @@ public class PlayerController : MonoBehaviour
             playerAudio.PlayOneShot(jumpSound, 1.0f);
             doubleJump = false;
         }
+        
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            dashing = true;
+            playerAnim.SetFloat("Speed_Multiplier", 2.0f);
+        }
+        // In this case, although dashing will always be true when pressing shift, the code will always go to first case first so we don't have to worry about going to the second case
+        else if (dashing)   
+        {
+            dashing = false;
+            playerAnim.SetFloat("Speed_Multiplier", 1.0f);
+        }
 
         // Fixed when after double jumping and hitting obstacles and still playing dirt.
         if (isGameOver)
@@ -61,7 +74,7 @@ public class PlayerController : MonoBehaviour
             doubleJump = true;
             dirtParticle.Play();
         }
-        else if (collision.gameObject.CompareTag("Obstacle"))
+        else if (collision.gameObject.CompareTag("Obstacle") && !isGameOver)
         {
             isGameOver = true;
             playerAnim.SetBool("Death_b", true);
@@ -69,7 +82,6 @@ public class PlayerController : MonoBehaviour
             explosionParticle.Play();
             playerAudio.PlayOneShot(crashSound, 1.0f);
             dirtParticle.Stop();
-            Debug.Log("Game Over");
         }
         
     }
