@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed;
+    private float powerUpStrength = 15f;
     private Rigidbody playerRb;
     private GameObject focalPoint;
     private bool hasPowerUp;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,11 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Collide with " + collision.gameObject.name +
                     "with power up is:" + hasPowerUp);
+            
+            Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
+            Vector3 bounceDirection = (collision.gameObject.transform.position - transform.position);
+
+            enemyRb.AddForce(bounceDirection * powerUpStrength, ForceMode.Impulse);
         }
     }
 }
