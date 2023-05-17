@@ -6,6 +6,7 @@ public class SpawnManagerX : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public GameObject powerupPrefab;
+    public float addonSpeed = 0;
 
     private float spawnRangeX = 10;
     private float spawnZMin = 15; // set min spawn Z
@@ -24,6 +25,7 @@ public class SpawnManagerX : MonoBehaviour
 
         if (enemyCount == 0)
         {
+            addonSpeed += 0.2f;
             SpawnEnemyWave(waveCount);
         }
 
