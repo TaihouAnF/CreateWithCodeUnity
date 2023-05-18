@@ -62,12 +62,12 @@
     <Compile Include="Assets\Scripts\MoveForward.cs" />
     <Compile Include="Assets\Scripts\ScriptsC2\SpawnManagerX.cs" />
     <Compile Include="Assets\Scripts\SpawnManager.cs" />
+    <Compile Include="Assets\Scripts\HungerBarManager.cs" />
     <Compile Include="Assets\Scripts\ScriptsC2\MoveForwardX.cs" />
     <Compile Include="Assets\Scripts\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\DestroyOutOfBound.cs" />
     <Compile Include="Assets\Scripts\DetectCollisions.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\HungerBarManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Course Library\_Source_Files\_LICENSE.txt" />
