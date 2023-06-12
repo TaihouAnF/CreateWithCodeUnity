@@ -7,6 +7,10 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public bool hasPowerUp = false;
     public GameObject powerUpIndicator;
+    public powerUpType currentPowerUpType = powerUpType.None;
+    public GameObject rocketPrefab;
+    private GameObject tmpRocket;
+    private Coroutine powerupCountdown;
     private float powerUpStrength = 15f;
     private Rigidbody playerRb;
     private GameObject focalPoint;
@@ -31,9 +35,14 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Powerup"))
         {
             hasPowerUp = true;
+            currentPowerUpType = other.gameObject.GetComponent<PowerUp>().powerUpType;
             Destroy(other.gameObject);
             powerUpIndicator.gameObject.SetActive(true);
-            StartCoroutine(PowerUpCountdown());
+            if (powerupCountdown != null)
+            {
+                StopCoroutine(PowerUpCountdown());
+            }
+            powerupCountdown = StartCoroutine(PowerUpCountdown());
         }
     }
 
@@ -41,6 +50,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(7);
         hasPowerUp = false;
+        currentPowerUpType = powerUpType.None;
         powerUpIndicator.gameObject.SetActive(false);
     }
 
