@@ -19,6 +19,11 @@ public class RocketHoming : MonoBehaviour
             transform.position += speed * Time.deltaTime * direction;
             transform.LookAt(target);
         }
+        else if (!target)
+        {
+            homing = false;
+            Destroy(gameObject);
+        }
     }
     public void fireRockets(Transform targetTo)
     {

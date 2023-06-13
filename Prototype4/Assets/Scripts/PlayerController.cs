@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentPowerUpType == PowerUpType.Rocket && Input.GetKeyDown(KeyCode.F))
         {
-            launchRockets();
+            LaunchRockets();
         }
     }
 
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void launchRockets()
+    void LaunchRockets()
     {
         foreach (var enemy in FindObjectsOfType<Enemy>())
         {
