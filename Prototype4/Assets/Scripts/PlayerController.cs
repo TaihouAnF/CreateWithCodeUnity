@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public bool hasPowerUp = false;
     public GameObject powerUpIndicator;
-    public powerUpType currentPowerUpType = powerUpType.None;
+    public PowerUpType currentPowerUpType = PowerUpType.None;
     public GameObject rocketPrefab;
     private GameObject tmpRocket;
     private Coroutine powerupCountdown;
@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         playerRb.AddForce(forwardInput * speed * focalPoint.transform.forward);
         powerUpIndicator.transform.position = transform.position;
 
-        if (currentPowerUpType == powerUpType.Rocket && Input.getKeyDown(KeyCode.F))
+        if (currentPowerUpType == PowerUpType.Rocket && Input.GetKeyDown(KeyCode.F))
         {
             launchRockets();
         }
@@ -55,13 +55,13 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(7);
         hasPowerUp = false;
-        currentPowerUpType = powerUpType.None;
+        currentPowerUpType = PowerUpType.None;
         powerUpIndicator.gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && currentPowerUpType == powerUpType.Pushback)
+        if (collision.gameObject.CompareTag("Enemy") && currentPowerUpType == PowerUpType.Pushback)
         {
             Debug.Log("Player collided with: " + collision.gameObject.name + " with powerup set to " + currentPowerUpType.ToString());
 
