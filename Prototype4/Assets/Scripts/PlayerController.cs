@@ -28,6 +28,11 @@ public class PlayerController : MonoBehaviour
         float forwardInput = Input.GetAxis("Vertical");
         playerRb.AddForce(forwardInput * speed * focalPoint.transform.forward);
         powerUpIndicator.transform.position = transform.position;
+
+        if (currentPowerUpType == powerUpType.Rocket && Input.getKeyDown(KeyCode.F))
+        {
+            launchRockets();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -56,15 +61,23 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Enemy") && hasPowerUp)
+        if (collision.gameObject.CompareTag("Enemy") && currentPowerUpType == powerUpType.Pushback)
         {
-            Debug.Log("Collide with " + collision.gameObject.name +
-                    "with power up is:" + hasPowerUp);
-            
+            Debug.Log("Player collided with: " + collision.gameObject.name + " with powerup set to " + currentPowerUpType.ToString());
+
             Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 bounceDirection = (collision.gameObject.transform.position - transform.position);
 
             enemyRb.AddForce(bounceDirection * powerUpStrength, ForceMode.Impulse);
+        }
+    }
+
+    void launchRockets()
+    {
+        foreach (var enemy in FindObjectsOfType<Enemy>())
+        {
+            tmpRocket = Instantiate(rocketPrefab, transform.position + Vector3.up, Quaternion.identity);
+            tmpRocket.GetComponent<RocketHoming>().fireRockets(enemy.transform);
         }
     }
 }
