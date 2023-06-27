@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Player Attributes")]
     public float speed;
     public bool hasPowerUp = false;
     public GameObject powerUpIndicator;
     public PowerUpType currentPowerUpType = PowerUpType.None;
-    public GameObject rocketPrefab;
-    private GameObject tmpRocket;
-    private Coroutine powerupCountdown;
-    private float powerUpStrength = 15f;
     private Rigidbody playerRb;
     private GameObject focalPoint;
+
+    [Header("Rocket PowerUp Attributes")]
+    public GameObject rocketPrefab;
+    [SerializeField] private float powerUpStrength = 15f;
+    private GameObject tmpRocket;
+    private Coroutine powerupCountdown;
+
+    [Header("Smash PowerUp Attributes")]
+    [SerializeField] private float cooldownTime;
+    [SerializeField] private float smashSpeed;
+    [SerializeField] private float explosionForce;
+    [SerializeField] private float explosionRadius;
+    private bool smashing = false;
+    private float floorY;
     
     // Start is called before the first frame update
     void Start()
@@ -33,6 +44,13 @@ public class PlayerController : MonoBehaviour
         {
             LaunchRockets();
         }
+
+        if (currentPowerUpType == PowerUpType.Smash && Input.GetKeyDown(KeyCode.Space) && !smashing) 
+        {
+            smashing = true;
+            StartCoroutine(Smashing());
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -42,7 +60,7 @@ public class PlayerController : MonoBehaviour
             hasPowerUp = true;
             currentPowerUpType = other.gameObject.GetComponent<PowerUp>().powerUpType;
             Destroy(other.gameObject);
-            powerUpIndicator.gameObject.SetActive(true);
+            powerUpIndicator.SetActive(true);
             if (powerupCountdown != null)
             {
                 StopCoroutine(PowerUpCountdown());
@@ -51,23 +69,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator PowerUpCountdown()
-    {
-        yield return new WaitForSeconds(7);
-        hasPowerUp = false;
-        currentPowerUpType = PowerUpType.None;
-        powerUpIndicator.gameObject.SetActive(false);
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy") && currentPowerUpType == PowerUpType.Pushback)
         {
-            Debug.Log("Player collided with: " + collision.gameObject.name + " with powerup set to " + currentPowerUpType.ToString());
-
             Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
             Vector3 bounceDirection = (collision.gameObject.transform.position - transform.position);
-
             enemyRb.AddForce(bounceDirection * powerUpStrength, ForceMode.Impulse);
         }
     }
@@ -79,5 +86,49 @@ public class PlayerController : MonoBehaviour
             tmpRocket = Instantiate(rocketPrefab, transform.position + Vector3.up, Quaternion.identity);
             tmpRocket.GetComponent<RocketHoming>().fireRockets(enemy.transform);
         }
+    }
+    
+    private IEnumerator PowerUpCountdown()
+    {
+        yield return new WaitForSeconds(7);
+        hasPowerUp = false;
+        currentPowerUpType = PowerUpType.None;
+        powerUpIndicator.SetActive(false);
+    }
+
+    private IEnumerator Smashing()
+    {
+        var enemies = FindObjectsOfType<Enemy>();
+        floorY = transform.position.y;
+
+        float jumpTime = Time.time + cooldownTime;
+        while (Time.time < jumpTime)
+        {
+            playerRb.velocity = new(playerRb.velocity.x, smashSpeed);
+            yield return null;
+        }
+
+        while (transform.position.y > floorY)
+        {
+            playerRb.velocity = new(playerRb.velocity.x, -smashSpeed * 2);
+            yield return null;
+        }
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            if (enemies[i])
+            {
+                enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, 
+                                                    transform.position, explosionRadius, 0.0f, ForceMode.Impulse);
+            }
+        }
+        smashing = false;
+        if (powerupCountdown != null)
+        {
+            StopCoroutine(PowerUpCountdown());
+        }
+        hasPowerUp = false;
+        currentPowerUpType = PowerUpType.None;
+        powerUpIndicator.SetActive(false);
     }
 }
