@@ -130,4 +130,4 @@ MonoBehaviour:
   speed: 2
   isBoss: 1
   minionCount: 3
-  spawnInterval: 0
+  spawnInterval: 10
