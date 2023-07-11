@@ -27,6 +27,7 @@ public class Target : MonoBehaviour
         
     }
 
+    #region Initialization
     private Vector3 RandomForce()
     {
         return Random.Range(minSpeed, maxSpeed) * Vector3.up;
@@ -40,5 +41,17 @@ public class Target : MonoBehaviour
     private Vector3 RandomSpawnPos()
     {
         return new Vector3(Random.Range(-xRange, xRange), ySpawnPos);
+    }
+    #endregion
+
+    #region Behavior
+    private void OnMouseDown()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject);
     }
 }
