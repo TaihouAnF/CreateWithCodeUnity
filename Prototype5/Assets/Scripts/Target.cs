@@ -11,10 +11,15 @@ public class Target : MonoBehaviour
     [SerializeField] private float maxTorque;
     [SerializeField] private float xRange;
     [SerializeField] private float ySpawnPos;
+    [SerializeField] private int score;
+    [SerializeField] private ParticleSystem explosionParticle;
+    
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         targetRb = GetComponent<Rigidbody>();
         targetRb.AddForce(RandomForce(), ForceMode.Impulse);
         targetRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
@@ -47,6 +52,8 @@ public class Target : MonoBehaviour
     #region Behavior
     private void OnMouseDown()
     {
+        gameManager.UpdateScore(score);
+        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
         Destroy(gameObject);
     }
 
