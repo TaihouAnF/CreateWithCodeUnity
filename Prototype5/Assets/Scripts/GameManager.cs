@@ -1,7 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] targets; // Since we only have four types of objects and we don't modify frequently in game so use array
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
+    public Button restartButton;
     public bool isGameAlive;
     private int score;
     
@@ -53,6 +55,12 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(true);
         isGameAlive = false;
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

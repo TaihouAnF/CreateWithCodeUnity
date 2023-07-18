@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1992350333375935676}
   m_Layer: 0
   m_Name: Bad 1
-  m_TagString: Untagged
+  m_TagString: Bad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,4 +156,5 @@ MonoBehaviour:
   xRange: 4
   ySpawnPos: -6
   score: -2
+  decreaseScore: 0
   explosionParticle: {fileID: 2478549635105912040, guid: ec46c8c4a3cbc429382ee48bd9169b45, type: 3}
