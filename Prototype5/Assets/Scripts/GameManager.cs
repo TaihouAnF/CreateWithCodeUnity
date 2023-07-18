@@ -13,16 +13,6 @@ public class GameManager : MonoBehaviour
     public Button restartButton;
     public bool isGameAlive;
     private int score;
-    
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        score = 0;
-        isGameAlive = true;
-        UpdateScore(0);
-        StartCoroutine(SpawnTarget());
-    }
 
     private IEnumerator SpawnTarget()
     {
@@ -34,6 +24,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void StartGame(int difficulty)
+    {
+        score = 0;
+        isGameAlive = true;
+        UpdateScore(0);
+        StartCoroutine(SpawnTarget());
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     public void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
@@ -41,7 +44,7 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
-        
+
         if (!isGameAlive)
         {
             scoreText.gameObject.SetActive(false);
@@ -57,10 +60,5 @@ public class GameManager : MonoBehaviour
         gameOverText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
         isGameAlive = false;
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
