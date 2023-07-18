@@ -10,13 +10,14 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
     private int score;
+    private bool isGameAlive;
 
     // Start is called before the first frame update
     void Start()
     {
         score = 0;
+        isGameAlive = true;
         UpdateScore(0);
-        
         StartCoroutine(SpawnTarget());
     }
 
@@ -33,11 +34,24 @@ public class GameManager : MonoBehaviour
     public void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
-        scoreText.text = "Score: " + score;
+        if (score < 0)
+        {
+            GameOver();
+        }
+        
+        if (!isGameAlive)
+        {
+            scoreText.gameObject.SetActive(false);
+        }
+        else
+        {
+            scoreText.text = "Score: " + score;
+        }
     }
 
-    public void GameOver()
+    private void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
+        isGameAlive = false;
     }
 }

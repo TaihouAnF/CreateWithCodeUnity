@@ -12,6 +12,7 @@ public class Target : MonoBehaviour
     [SerializeField] private float xRange;
     [SerializeField] private float ySpawnPos;
     [SerializeField] private int score;
+    [SerializeField] private int decreaseScore;
     [SerializeField] private ParticleSystem explosionParticle;
     
     private GameManager gameManager;
@@ -60,6 +61,10 @@ public class Target : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
+        if (!gameObject.CompareTag("Bad"))
+        {
+            gameManager.UpdateScore(decreaseScore);
+        }
     }
     #endregion
 }
