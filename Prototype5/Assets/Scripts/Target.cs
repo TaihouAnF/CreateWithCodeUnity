@@ -53,9 +53,11 @@ public class Target : MonoBehaviour
     #region Behavior
     private void OnMouseDown()
     {
-        gameManager.UpdateScore(score);
-        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
-        Destroy(gameObject);
+        if (gameManager.isGameAlive) {
+            gameManager.UpdateScore(score);
+            Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

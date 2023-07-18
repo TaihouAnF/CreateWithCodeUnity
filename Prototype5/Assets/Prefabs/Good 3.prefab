@@ -133,4 +133,5 @@ MonoBehaviour:
   xRange: 4
   ySpawnPos: -6
   score: 4
+  decreaseScore: -2
   explosionParticle: {fileID: 625621707174889904, guid: ef43e5aef41c142fb85a7658a397dc75, type: 3}

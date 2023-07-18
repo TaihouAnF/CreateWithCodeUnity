@@ -9,8 +9,9 @@ public class GameManager : MonoBehaviour
     public GameObject[] targets; // Since we only have four types of objects and we don't modify frequently in game so use array
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
+    public bool isGameAlive;
     private int score;
-    private bool isGameAlive;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator SpawnTarget()
     {
-        while (true)
+        while (isGameAlive)
         {
             yield return new WaitForSeconds(spawnRate);
             int index = Random.Range(0, targets.Length);
