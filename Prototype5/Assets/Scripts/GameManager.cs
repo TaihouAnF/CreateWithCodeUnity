@@ -9,11 +9,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float spawnRate = 1.0f;
     public GameObject[] targets; // Since we only have four types of objects and we don't modify frequently in game so use array
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI livesText;
     public TextMeshProUGUI gameOverText;
     public Button restartButton;
     public bool isGameAlive;
     public GameObject titleScreen;
     private int score;
+    private int lives;
 
     private IEnumerator SpawnTarget()
     {
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
     public void StartGame(int difficulty)
     {
         score = 0;
+        lives = 3;
         isGameAlive = true;
         titleScreen.SetActive(false);
         spawnRate /= difficulty;
@@ -43,7 +46,13 @@ public class GameManager : MonoBehaviour
     public void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
-        if (score < 0)
+        
+        if (scoreToAdd < 0)
+        {
+            lives -= 1;
+        }
+       
+        if (score < 0 || lives <= 0)
         {
             GameOver();
         }
@@ -51,10 +60,12 @@ public class GameManager : MonoBehaviour
         if (!isGameAlive)
         {
             scoreText.gameObject.SetActive(false);
+            livesText.gameObject.SetActive(false);
         }
         else
         {
             scoreText.text = "Score: " + score;
+            livesText.text = "Lives: " + lives;
         }
     }
 
