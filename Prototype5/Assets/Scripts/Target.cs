@@ -14,6 +14,7 @@ public class Target : MonoBehaviour
     [SerializeField] private int score;
     [SerializeField] private int decreaseScore;
     [SerializeField] private ParticleSystem explosionParticle;
+    public AudioSource beingClick;
     
     private GameManager gameManager;
 
@@ -49,6 +50,10 @@ public class Target : MonoBehaviour
     {
         if (gameManager.isGameAlive) {
             gameManager.UpdateScore(score);
+            if (!beingClick.isPlaying) 
+            {
+                beingClick.Play();
+            }
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
             Destroy(gameObject);
         }
