@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public Button restartButton;
     public bool isGameAlive;
     public GameObject titleScreen;
+    public AudioClip goodBeClicked;
+    public AudioClip badBeClicked;
+    public AudioSource audioSource;
     private int score;
     private int lives;
 
@@ -49,7 +52,12 @@ public class GameManager : MonoBehaviour
         
         if (scoreToAdd < 0)
         {
+            audioSource.PlayOneShot(badBeClicked, 1.0f);
             lives -= 1;
+        }
+        else
+        {
+            audioSource.PlayOneShot(goodBeClicked, 1.0f);
         }
        
         if (score < 0 || lives <= 0)

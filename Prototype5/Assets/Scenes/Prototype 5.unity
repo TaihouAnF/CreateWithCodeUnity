@@ -2344,6 +2344,9 @@ MonoBehaviour:
   restartButton: {fileID: 488168552}
   isGameAlive: 0
   titleScreen: {fileID: 350315110}
+  goodBeClicked: {fileID: 8300000, guid: af9f934eb4288464eb120a5857921cc3, type: 3}
+  badBeClicked: {fileID: 8300000, guid: 774ebc5c074ce4695b7cc310fbd44087, type: 3}
+  audioSource: {fileID: 1910927912}
 --- !u!4 &1910927911
 Transform:
   m_ObjectHideFlags: 0
