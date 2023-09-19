@@ -1702,7 +1702,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8679245, g: 0.81470275, b: 0.81470275, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2558,6 +2558,7 @@ MonoBehaviour:
   goodBeClicked: {fileID: 8300000, guid: af9f934eb4288464eb120a5857921cc3, type: 3}
   badBeClicked: {fileID: 8300000, guid: 774ebc5c074ce4695b7cc310fbd44087, type: 3}
   audioSource: {fileID: 1910927912}
+  pausePanel: {fileID: 1300791843}
 --- !u!4 &1910927911
 Transform:
   m_ObjectHideFlags: 0

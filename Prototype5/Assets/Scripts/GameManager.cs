@@ -17,8 +17,18 @@ public class GameManager : MonoBehaviour
     public AudioClip goodBeClicked;
     public AudioClip badBeClicked;
     public AudioSource audioSource;
+    public GameObject pausePanel;
+    private bool shouldPause;
     private int score;
     private int lives;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ChangePaused();
+        }
+    }
 
     private IEnumerator SpawnTarget()
     {
@@ -39,6 +49,7 @@ public class GameManager : MonoBehaviour
         spawnRate /= difficulty;
         UpdateScore(0);
         StartCoroutine(SpawnTarget());
+        shouldPause = false;
     }
 
     public void RestartGame()
@@ -82,5 +93,12 @@ public class GameManager : MonoBehaviour
         gameOverText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
         isGameAlive = false;
+    }
+
+    private void ChangePaused()
+    {
+        shouldPause = !shouldPause;
+        pausePanel.gameObject.SetActive(shouldPause);
+        Time.timeScale = shouldPause ? 0.0f : 1.0f;
     }
 }
