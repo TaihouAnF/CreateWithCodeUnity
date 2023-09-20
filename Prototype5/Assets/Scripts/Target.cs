@@ -45,9 +45,11 @@ public class Target : MonoBehaviour
     #endregion
 
     #region Behavior
-    private void OnMouseDown()
+
+    public void DestroyTarget()
     {
-        if (gameManager.isGameAlive) {
+        if (gameManager.isGameAlive)
+        {
             gameManager.UpdateScore(score);
             //audioSource.PlayOneShot(audioClip, 1.0f); This object gets destroyed so it can't play the sound
             Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
@@ -63,5 +65,6 @@ public class Target : MonoBehaviour
             gameManager.UpdateScore(decreaseScore);
         }
     }
+
     #endregion
 }
