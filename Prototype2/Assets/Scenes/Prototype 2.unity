@@ -485,6 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 562745672}
   - component: {fileID: 562745671}
+  - component: {fileID: 562745673}
   m_Layer: 0
   m_Name: SpawnManager
   m_TagString: Untagged
@@ -523,6 +524,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &562745673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562745670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45c0e1f24e2ce4a5b9bf1f3a7499cd45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  objectToPool: {fileID: 2383162020424015138, guid: a56ada5c2745d7746a2770141a1c151c, type: 3}
+  amountToPool: 5
 --- !u!1 &992285705
 GameObject:
   m_ObjectHideFlags: 0
