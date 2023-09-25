@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +22,11 @@ public class DetectCollisions : MonoBehaviour
         else if (other.CompareTag("Projectile"))
         {
             GetComponent<HungerBarManager>().FeedAnimal(1);
-            Destroy(other.gameObject);
+            // Instead of destroying the projectile when it collides with an animal
+            //Destroy(other.gameObject); 
+
+            // Just deactivate the food and destroy the animal
+            other.gameObject.SetActive(false);
         } 
     }
 

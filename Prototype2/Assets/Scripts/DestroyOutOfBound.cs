@@ -25,8 +25,17 @@ public class DestroyOutOfBound : MonoBehaviour
             if (CompareTag("Projectile"))
             {
                 scoreManager.MissFood();
+                // Instead of destroying the projectile when it leaves the screen
+                //Destroy(gameObject);
+
+                // Just deactivate it
+                gameObject.SetActive(false);
             }
-            Destroy(gameObject);
+            else
+            {
+                Destroy(gameObject);
+            }
+            
         }
     }
 }
